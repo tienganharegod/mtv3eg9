@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Kiểm Tra Tiếng Anh - Ms Lê Hằng English</title>
+    <!-- Google Fonts: Nunito & Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================== RESET & BASE STYLES ==================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', 'Quicksand', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #8854C0, #FDCB6E, #00C9A7, #FF7675);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            padding: 20px 12px;
+            color: #2d3436;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Gradient Background Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Fun Pattern Background */
+        .bg-patterns {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.25;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><path fill="%23FFFFFF" d="M20,20 L25,10 L30,20 L40,25 L30,30 L25,40 L20,30 L10,25 Z M80,80 C85,70 95,70 100,80 C105,90 90,105 80,95 C70,105 55,90 60,80 C65,70 75,70 80,80 Z M90,20 A10,10 0 1,1 70,20 A10,10 0 1,1 90,20 Z"/></svg>');
+            animation: floatingPattern 25s linear infinite;
+        }
+
+        @keyframes floatingPattern {
+            0% { background-position: 0 0; }
+            100% { background-position: 500px 1000px; }
+        }
+
+        /* Container Main */
+        .main-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==================== HEADER & WARNING BANNER ==================== */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .teacher-badge {
+            display: inline-block;
+            background: #ffffff;
+            color: #8854C0;
+            font-size: 0.95rem;
+            font-weight: 900;
+            padding: 6px 16px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 2px solid #8854C0;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .warning-box {
+            background: #FFF9E6;
+            border: 3px dashed #FDCB6E;
+            border-radius: 20px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .warning-title {
+            color: #d63031;
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .warning-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #2d3436;
+            font-weight: 700;
+        }
+
+        .warning-highlight {
+            color: #d63031;
+            font-weight: 900;
+            margin-top: 6px;
+            display: block;
+        }
+
+        .warning-footer {
+            display: inline-block;
+            margin-top: 8px;
+            background: #ffeaa7;
+            color: #d63031;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-style: italic;
+        }
+
+        /* ==================== QUESTION CARDS ==================== */
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            border: 4px solid #ffffff;
+            transition: transform 0.2s ease;
+        }
+
+        .section-header {
+            background: #8854C0;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .question-number {
+            background: #8854C0;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1rem;
+            padding: 6px 14px;
+            border-radius: 14px;
+            box-shadow: 0 4px 0 #5c328b;
+            white-space: nowrap;
+        }
+
+        .question-title {
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: #2d3436;
+            line-height: 1.5;
+        }
+
+        .question-content-box {
+            background: #f1f2f6;
+            border: 2px dashed #a4b0be;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            font-weight: 700;
+            color: #2f3542;
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        @media(min-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* 3D Duolingo Style Buttons */
+        .option-btn {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-bottom: 6px solid #cbd5e1;
+            border-radius: 18px;
+            padding: 14px 18px;
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: #334155;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            outline: none;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            border-bottom-width: 8px;
+            background: #f8fafc;
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(2px);
+            border-bottom-width: 3px;
+        }
+
+        /* Option Colors */
+        .option-btn.correct {
+            background: #e6f4ea !important;
+            border-color: #00D26A !important;
+            border-bottom-color: #00a854 !important;
+            color: #0d652d !important;
+        }
+
+        .option-btn.wrong {
+            background: #fce8e6 !important;
+            border-color: #FF4757 !important;
+            border-bottom-color: #c0392b !important;
+            color: #a50e0e !important;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        /* ==================== EXPLANATION BOX ==================== */
+        .explanation-box {
+            display: none;
+            margin-top: 20px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-left: 6px solid #8854C0;
+            border-radius: 18px;
+            padding: 18px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exp-title {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #8854C0;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .exp-section {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .exp-section-title {
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .exp-list {
+            list-style: none;
+            padding-left: 8px;
+        }
+
+        .exp-list li {
+            margin-bottom: 4px;
+        }
+
+        /* ==================== SUBMIT & RESULT POPUP ==================== */
+        .submit-container {
+            text-align: center;
+            margin: 35px 0 50px 0;
+        }
+
+        .btn-submit {
+            background: #00C9A7;
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 900;
+            padding: 16px 48px;
+            border: none;
+            border-bottom: 6px solid #00967d;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 201, 167, 0.3);
+            transition: all 0.15s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            border-bottom-width: 8px;
+            background: #00dbb7;
+        }
+
+        .btn-submit:active {
+            transform: translateY(2px);
+            border-bottom-width: 3px;
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            border: 6px solid #FDCB6E;
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .modal-score {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #8854C0;
+            margin-bottom: 12px;
+        }
+
+        .modal-message {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #2d3436;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 16px;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .btn-close {
+            background: #8854C0;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            padding: 12px 32px;
+            border: none;
+            border-bottom: 5px solid #5c328b;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-close:hover {
+            background: #9964d4;
+        }
+
+        /* Canvas Confetti */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-patterns"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="main-wrapper">
+        <!-- HEADER -->
+        <header>
+            <div class="teacher-badge">Giáo viên tạo: Ms Lê Hằng English</div>
+            
+            <div class="warning-box">
+                <div class="warning-title">
+                    <span>⚠️</span> LỜI NHẮC CỰC KỲ QUAN TRỌNG <span>⚠️</span>
+                </div>
+                <div class="warning-text">
+                    Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.
+                </div>
+                <div class="warning-highlight">
+                    Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+                </div>
+                <div class="warning-footer">* Kéo tới đâu, làm tới đó! *</div>
+            </div>
+        </header>
+
+        <!-- QUIZ CONTAINER -->
+        <main class="quiz-container" id="quiz-container">
+            <!-- Questions rendered by JavaScript -->
+        </main>
+
+        <!-- SUBMIT BUTTON -->
+        <div class="submit-container">
+            <button class="btn-submit" onclick="submitQuiz()">Nộp Bài 🎉</button>
+        </div>
+    </div>
+
+    <!-- EVALUATION MODAL -->
+    <div class="modal-overlay" id="result-modal">
+        <div class="modal-card">
+            <div class="modal-icon" id="modal-icon">🏆</div>
+            <div class="modal-score" id="modal-score">0 / 0</div>
+            <div class="modal-message" id="modal-message"></div>
+            <button class="btn-close" onclick="closeModal()">Đóng & Xem Lại Bài</button>
+        </div>
+    </div>
+
+    <script>
+        /* ==================== WEB AUDIO API (SOUND EFFECTS) ==================== */
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioCtx();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSound(type) {
+            initAudio();
+            if (!audioCtx) return;
+
+            if (type === 'correct') {
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sine';
+                
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.25); // C6
+                
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            } else {
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                
+                osc.frequency.setValueAtTime(280, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime + 0.15);
+                osc.frequency.setValueAtTime(140, audioCtx.currentTime + 0.3);
+                
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.45);
+            }
+        }
+
+        /* ==================== CANVAS CONFETTI ENGINE ==================== */
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function triggerConfetti() {
+            particles = [];
+            const colors = ['#8854C0', '#FDCB6E', '#00C9A7', '#FF7675', '#00D26A', '#74b9ff'];
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: window.innerWidth / 2,
+                    y: window.innerHeight / 2,
+                    vx: (Math.random() - 0.5) * 18,
+                    vy: (Math.random() - 0.5) * 18 - 4,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    life: 1
+                });
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let active = false;
+            particles.forEach(p => {
+                if (p.life > 0) {
+                    active = true;
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.3;
+                    p.life -= 0.025;
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = Math.max(0, p.life);
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+            if (active) requestAnimationFrame(animateConfetti);
+        }
+
+        /* ==================== QUIZ DATASET ==================== */
+        const quizData = [
+            {
+                id: 5,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 5. ______ the school is, ______ it is for students.",
+                content: null,
+                options: [
+                    "nearer / more convenient",
+                    "The nearer / the most convenient",
+                    "The nearer / the more convenient",
+                    "The nearest / the more convenient"
+                ],
+                correctIndex: 2, // C
+                translation: "Trường học càng ở gần, thì càng thuận tiện hơn cho các học sinh.",
+                optionsDetail: [
+                    "A. nearer / more convenient (thiếu mạo từ 'The' ở cả hai vế so sánh kép)",
+                    "B. The nearer / the most convenient (vế thứ hai dùng so sánh nhất 'the most' là sai cấu trúc)",
+                    "C. The nearer / the more convenient (dạng so sánh kép chuẩn xác)",
+                    "D. The nearest / the more convenient (vế đầu dùng so sánh nhất 'The nearest' là sai cấu trúc)"
+                ],
+                whyCorrect: "Cấu trúc so sánh kép (Double Comparative): 'The + so sánh hơn (+ N) + S + V, the + so sánh hơn (+ N) + S + V' (Càng... thì càng...). Cả hai vế đều phải bắt đầu bằng 'The' đi kèm dạng so sánh hơn ('nearer' và 'more convenient').",
+                whyWrong: "A thiếu 'The' ở cả 2 vế; B và D sử dụng dạng so sánh nhất ('the most', 'The nearest') vi phạm cấu trúc so sánh kép."
+            },
+            {
+                id: 6,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 6. Two roommates are studying and the room is dark.<br>- Linda: \"Would you mind opening the window?\"<br>- Jane: \"______\"",
+                content: null,
+                options: [
+                    "Not at all",
+                    "I agree with you",
+                    "Yes, I'd love to",
+                    "Yes, you can"
+                ],
+                correctIndex: 0, // A
+                translation: "Hai bạn cùng phòng đang học bài và phòng bị tối.<br>- Linda: \"Bạn có phiền mở cửa sổ ra không?\"<br>- Jane: \"Không phiền chút nào đâu / Bạn cứ mở đi.\"",
+                optionsDetail: [
+                    "A. Not at all (cụm từ giao tiếp): Không phiền chút nào (đồng ý giúp đỡ một cách lịch sự)",
+                    "B. I agree with you (mẫu câu): Tôi đồng ý với bạn (dùng khi đồng ý ý kiến/quan điểm)",
+                    "C. Yes, I'd love to (mẫu câu): Có, tôi rất thích (dùng để nhận lời mời)",
+                    "D. Yes, you can (mẫu câu): Có, bạn có thể (dùng trả lời cho lời xin phép 'Can I...?')"
+                ],
+                whyCorrect: "Cấu trúc 'Would you mind + V-ing?' dùng để đưa ra lời yêu cầu lịch sự (Bạn có phiền làm... không?). Để đồng ý giúp đỡ (nghĩa là KHÔNG phiền), ta trả lời 'Not at all' hoặc 'No, of course not'.",
+                whyWrong: "B dùng đồng ý ý kiến; C dùng cho lời mời; D dùng trả lời cho 'Can I...?'. Nếu trả lời 'Yes' với câu hỏi 'Would you mind' nghĩa là bạn thấy phiền (từ chối)."
+            },
+            {
+                id: 7,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 7. The new student was very shy at the beginning, but then he ______ well with everyone.",
+                content: null,
+                options: [
+                    "cheered up",
+                    "got over",
+                    "went on",
+                    "got on"
+                ],
+                correctIndex: 3, // D
+                translation: "Học sinh mới lúc đầu rất nhút nhát, nhưng sau đó bạn ấy đã hòa hợp rất tốt với mọi người.",
+                optionsDetail: [
+                    "A. cheered up (phr v): trở nên vui vẻ hơn / làm ai vui lên",
+                    "B. got over (phr v): vượt qua (căn bệnh, nỗi đau)",
+                    "C. went on (phr v): tiếp tục",
+                    "D. got on (phr v trong cụm 'get on well with someone'): hòa hợp, có mối quan hệ tốt"
+                ],
+                whyCorrect: "Cụm động từ cố định: 'get on well with someone' có nghĩa là hòa hợp, ăn ý hoặc có mối quan hệ tốt với ai đó. Trong quá khứ chia là 'got on'.",
+                whyWrong: "A (vui lên), B (vượt qua cú sốc/bệnh tật), C (tiếp tục) không đi với cụm 'well with everyone' để diễn tả mối quan hệ bạn bè."
+            },
+            {
+                id: 8,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 8. If you have many assignments at the end of this semester, you ______ go to the self-study room.",
+                content: null,
+                options: [
+                    "could",
+                    "would",
+                    "should",
+                    "may"
+                ],
+                correctIndex: 2, // C
+                translation: "Nếu bạn có nhiều bài tập vào cuối học kỳ này, bạn nên đến phòng tự học.",
+                optionsDetail: [
+                    "A. could (modal v): có thể (chỉ khả năng/sự cho phép)",
+                    "B. would (modal v): sẽ (dùng trong câu điều kiện loại 2)",
+                    "C. should (modal v): nên (đưa ra lời khuyên hữu ích)",
+                    "D. may (modal v): có lẽ (chỉ khả năng có thể xảy ra)"
+                ],
+                whyCorrect: "Động từ khuyết thiếu 'should' được dùng trong mệnh đề chính của câu điều kiện loại 1 để đưa ra lời khuyên/đề xuất giải pháp hữu ích cho ai đó.",
+                whyWrong: "A và D không mang sắc thái khuyên nhủ; B dùng trong câu điều kiện loại 2 trái thực tế (trong khi mệnh đề If dùng 'have' ở hiện tại đơn)."
+            },
+            {
+                id: 9,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 9. The road is narrow, so ______ often occurs at rush hours.",
+                content: null,
+                options: [
+                    "traffic safety",
+                    "traffic congestion",
+                    "traffic flow",
+                    "traffic light"
+                ],
+                correctIndex: 1, // B
+                translation: "Con đường rất hẹp, vì vậy nạn ùn tắc giao thông thường xuyên xảy ra vào các giờ cao điểm.",
+                optionsDetail: [
+                    "A. traffic safety (n): an toàn giao thông",
+                    "B. traffic congestion (n): sự ùn tắc giao thông, kẹt xe",
+                    "C. traffic flow (n): dòng lưu thông xe cộ",
+                    "D. traffic light (n): đèn giao thông"
+                ],
+                whyCorrect: "Cụm danh từ 'traffic congestion' (ùn tắc giao thông) phù hợp nhất với nguyên nhân 'đường hẹp' (narrow) và thời điểm 'giờ cao điểm' (rush hours).",
+                whyWrong: "An toàn giao thông (A), dòng lưu thông (C) hay đèn giao thông (D) không phải là sự cố tiêu cực bị gây ra bởi con đường hẹp vào giờ cao điểm."
+            },
+            {
+                id: 10,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 10. When I was at school, I had to learn ______ a well-balanced life in order to reduce stress and anxiety.",
+                content: null,
+                options: [
+                    "when to start",
+                    "how to have",
+                    "where to work",
+                    "who to work"
+                ],
+                correctIndex: 1, // B
+                translation: "Khi còn đi học, tôi đã phải học cách có một cuộc sống cân bằng để giảm bớt căng thẳng và lo âu.",
+                optionsDetail: [
+                    "A. when to start (phr): khi nào bắt đầu",
+                    "B. how to have (phr): làm thế nào để có / học cách có",
+                    "C. where to work (phr): làm việc ở đâu",
+                    "D. who to work (phr): sai cấu trúc (thiếu 'with')"
+                ],
+                whyCorrect: "Cấu trúc: 'learn + how to + V-bare' (học cách làm một việc gì đó). 'how to have a well-balanced life' nghĩa là học cách để có một lối sống cân bằng.",
+                whyWrong: "A (khi nào bắt đầu), C (làm việc ở đâu) và D (sai ngữ pháp) đều không kết hợp hợp lý với cụm 'a well-balanced life'."
+            },
+            {
+                id: 11,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 11. Her personal trainer helps her to set up ______ meals and healthy habits.",
+                content: null,
+                options: [
+                    "well-designed",
+                    "well-organised",
+                    "well-balanced",
+                    "well-structured"
+                ],
+                correctIndex: 2, // C
+                translation: "Huấn luyện viên cá nhân của cô ấy giúp cô ấy xây dựng các bữa ăn cân bằng dinh dưỡng và các thói quen lành mạnh.",
+                optionsDetail: [
+                    "A. well-designed (adj): được thiết kế tốt (dùng cho máy móc, nhà cửa, đồ vật)",
+                    "B. well-organised (adj): được tổ chức tốt (dùng cho sự kiện, công việc)",
+                    "C. well-balanced (adj): cân bằng dinh dưỡng (well-balanced meals)",
+                    "D. well-structured (adj): có cấu trúc tốt (dùng cho bài viết, chương trình)"
+                ],
+                whyCorrect: "Cụm từ cố định (collocation): 'well-balanced meals' có nghĩa là các bữa ăn cân bằng đầy đủ dinh dưỡng.",
+                whyWrong: "A (thiết kế), B (tổ chức) và D (cấu trúc) không dùng để miêu tả thành phần dinh dưỡng của bữa ăn."
+            },
+            {
+                id: 12,
+                section: "Mark the letter A, B, C, or D to indicate the correct word or phrase to complete each of the sentences.",
+                question: "Question 12. The sky train is packed ______ commuters at rush hours.",
+                content: null,
+                options: [
+                    "in",
+                    "on",
+                    "with",
+                    "off"
+                ],
+                correctIndex: 2, // C
+                translation: "Tàu điện trên cao chật nát người đi làm vào các giờ cao điểm.",
+                optionsDetail: [
+                    "A. in (prep): ở trong",
+                    "B. on (prep): ở trên",
+                    "C. with (prep trong cụm 'be packed with')",
+                    "D. off (prep): rời khỏi"
+                ],
+                whyCorrect: "Cấu trúc tính từ/phân từ cố định: 'be packed with somebody/something' có nghĩa là đông nghịt, chật nát bởi ai/cái gì.",
+                whyWrong: "Các giới từ in, on, off không đi với 'packed' để mang nghĩa chật nát đông đúc người."
+            },
+            {
+                id: 17,
+                section: "Make the letter A, B, C or D on your answer sheet to indicate the correct answer to each of the following questions from 17 to 18.",
+                question: "Question 17. Put the sentences (a-c) in the correct order, then fill in the blank to make a logical text.<br><i>\"It was early in the evening and I was having dinner, when suddenly I heard a terrible noise and felt the floor moving! It was an earthquake! ______.\"</i>",
+                content: `<ol style="list-style-type: lower-alpha; padding-left: 20px;">
+                    <li>At that moment, I saw Chloe, my roommate, outside the building.</li>
+                    <li>I got up from the table and left the house quickly.</li>
+                    <li>I told her I was too scared to go back into the flat in case it started shaking again.</li>
+                </ol>`,
+                options: [
+                    "b - a - c",
+                    "b - c - a",
+                    "c - a - b",
+                    "a - b - c"
+                ],
+                correctIndex: 0, // A
+                translation: "Trời mới chớm tối và tôi đang ăn tối thì đột nhiên nghe thấy tiếng động kinh hoàng và cảm nhận sàn nhà chuyển động! Đó là một trận động đất! (b) Tôi đứng dậy khỏi bàn và nhanh chóng rời khỏi nhà. (a) Lúc đó, tôi nhìn thấy Chloe, bạn cùng phòng của tôi, ở bên ngoài tòa nhà. (c) Tôi nói với cô ấy rằng tôi quá sợ hãi không dám quay lại căn hộ phòng trường hợp nó lại bắt đầu rung lắc.",
+                optionsDetail: [
+                    "A. b - a - c (Logic hành động: Chạy khỏi nhà (b) -> Thấy bạn ở ngoài (a) -> Nói chuyện với bạn (c))",
+                    "B. b - c - a (Nói chuyện với bạn trước khi nhìn thấy bạn ở đâu - Vô lý)",
+                    "C. c - a - b (Nói chuyện trước khi chạy ra khỏi nhà - Vô lý)",
+                    "D. a - b - c (Nhìn thấy bạn ở ngoài trước khi mình chạy ra khỏi nhà - Vô lý)"
+                ],
+                whyCorrect: "Trình tự diễn biến tự nhiên của câu chuyện: Khi trận động đất xảy ra, việc đầu tiên là phản xạ đứng dậy chạy ra khỏi nhà (b), sau khi ra ngoài tòa nhà thì nhìn thấy bạn cùng phòng Chloe (a), rồi hai người mới đứng nói chuyện với nhau về nỗi sợ (c).",
+                whyWrong: "Các phương án B, C, D đều vi phạm nguyên tắc nhân quả và dòng thời gian thực tế của hành động."
+            },
+            {
+                id: 18,
+                section: "Make the letter A, B, C or D on your answer sheet to indicate the correct answer to each of the following questions from 17 to 18.",
+                question: "Question 18. Choose the sentence that can end the text (in Question 17) most appropriately.",
+                content: null,
+                options: [
+                    "I was so frightened; I was shaking.",
+                    "Then Chloe and I decided to go straight to the park to find a safe place to sit.",
+                    "First, this park is really a must-visit for all nature lovers.",
+                    "Then we asked a local man who lived nearby how to get to the park."
+                ],
+                correctIndex: 1, // B
+                translation: "Chọn câu kết thúc đoạn văn (ở Câu 17) một cách phù hợp nhất: 'Sau đó Chloe và tôi quyết định đi thẳng đến công viên để tìm một nơi an toàn để ngồi.'",
+                optionsDetail: [
+                    "A. I was so frightened; I was shaking.: Tôi đã quá sợ hãi; tôi run rẩy (Lặp lại ý sợ hãi đã nói ở câu c)",
+                    "B. Then Chloe and I decided to go straight to the park to find a safe place to sit.: Sau đó Chloe và tôi quyết định đi thẳng đến công viên để tìm chỗ ngồi an toàn (Kết thúc hợp lý bằng hành động tiếp theo)",
+                    "C. First, this park is really a must-visit for all nature lovers.: Đầu tiên, công viên này thực sự là điểm phải đến cho người yêu thiên nhiên (Không liên quan ngữ cảnh động đất)",
+                    "D. Then we asked a local man who lived nearby how to get to the park.: Sau đó chúng tôi hỏi một người đàn ông sống gần đó cách đi đến công viên (Không tự nhiên vì hai bạn đã sống ở khu vực đó)"
+                ],
+                whyCorrect: "Sau khi nhân vật 'tôi' chia sẻ với Chloe rằng rất sợ quay lại căn hộ (ở câu c), quyết định hành động tiếp theo logic nhất của cả hai để tránh nguy hiểm động đất là cùng nhau ra công viên tìm khoảng trống an toàn.",
+                whyWrong: "A bị lặp lại cảm xúc sợ hãi đã trình bày; C nói về du lịch không đúng hoàn cảnh cấp bách; D dư thừa thông tin không tự nhiên."
+            }
+        ];
+
+        /* ==================== QUIZ STATE & RENDER LOGIC ==================== */
+        let userAnswers = {};
+        let shuffledQuestions = [];
+
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            shuffledQuestions = quizData.map((q) => {
+                let optionsMapped = q.options.map((opt, idx) => ({
+                    text: opt,
+                    isCorrect: idx === q.correctIndex,
+                    originalIndex: idx
+                }));
+
+                // Fisher-Yates Shuffle for Options
+                for (let i = optionsMapped.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [optionsMapped[i], optionsMapped[j]] = [optionsMapped[j], optionsMapped[i]];
+                }
+
+                return {
+                    ...q,
+                    shuffledOptions: optionsMapped
+                };
+            });
+
+            shuffledQuestions.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-card-${q.id}`;
+
+                let optionsHTML = q.shuffledOptions.map((optObj, optIdx) => {
+                    return `
+                        <button class="option-btn" id="opt-${q.id}-${optIdx}" onclick="selectOption(${q.id}, ${optIdx}, ${optObj.isCorrect})">
+                            <span class="opt-prefix">${String.fromCharCode(65 + optIdx)}.</span>
+                            <span>${optObj.text}</span>
+                        </button>
+                    `;
+                }).join('');
+
+                let contentBox = q.content ? `<div class="question-content-box">${q.content}</div>` : '';
+
+                let explanationHTML = `
+                    <div class="explanation-box" id="exp-${q.id}">
+                        <div class="exp-title">
+                            <span>💡</span> PHẦN GIẢI THÍCH CHI TIẾT CỦA MS LÊ HẰNG
+                        </div>
+                        <div class="exp-section">
+                            <div class="exp-section-title">1. Dịch nghĩa toàn câu / đoạn văn:</div>
+                            <div>"${q.translation}"</div>
+                        </div>
+                        <div class="exp-section">
+                            <div class="exp-section-title">2. Phân tích chi tiết 4 đáp án:</div>
+                            <ul class="exp-list">
+                                ${q.optionsDetail.map(detail => `<li>• ${detail}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="exp-section">
+                            <div class="exp-section-title">3. Tại sao chọn đáp án này?</div>
+                            <div style="color: #00A854; font-weight: 700;">${q.whyCorrect}</div>
+                        </div>
+                        <div class="exp-section">
+                            <div class="exp-section-title">4. Tại sao các đáp án khác chưa đúng?</div>
+                            <div style="color: #D63031;">${q.whyWrong}</div>
+                        </div>
+                    </div>
+                `;
+
+                card.innerHTML = `
+                    <div class="section-header">${q.section}</div>
+                    <div class="question-header">
+                        <span class="question-number">Câu ${index + 1}</span>
+                        <div class="question-title">${q.question}</div>
+                    </div>
+                    ${contentBox}
+                    <div class="options-grid">
+                        ${optionsHTML}
+                    </div>
+                    ${explanationHTML}
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        /* ==================== INTERACTION LOGIC ==================== */
+        function selectOption(qId, selectedOptIndex, isCorrect) {
+            if (userAnswers.hasOwnProperty(qId)) return;
+
+            userAnswers[qId] = isCorrect;
+            const qData = shuffledQuestions.find(q => q.id === qId);
+
+            qData.shuffledOptions.forEach((optObj, optIdx) => {
+                const btn = document.getElementById(`opt-${qId}-${optIdx}`);
+                btn.disabled = true;
+
+                if (optIdx === selectedOptIndex) {
+                    if (isCorrect) {
+                        btn.classList.add('correct');
+                    } else {
+                        btn.classList.add('wrong');
+                    }
+                } else if (optObj.isCorrect) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            if (isCorrect) {
+                playSound('correct');
+                triggerConfetti();
+            } else {
+                playSound('wrong');
+            }
+
+            const expBox = document.getElementById(`exp-${qId}`);
+            if (expBox) {
+                expBox.style.display = 'block';
+            }
+        }
+
+        /* ==================== EVALUATION & SUBMIT ==================== */
+        function submitQuiz() {
+            const totalQuestions = quizData.length;
+            let correctCount = 0;
+
+            Object.values(userAnswers).forEach(isCorrect => {
+                if (isCorrect) correctCount++;
+            });
+
+            const percentage = (correctCount / totalQuestions) * 100;
+            const scoreText = `${correctCount} / ${totalQuestions}`;
+
+            const modal = document.getElementById('result-modal');
+            const iconEl = document.getElementById('modal-icon');
+            const scoreEl = document.getElementById('modal-score');
+            const msgEl = document.getElementById('modal-message');
+
+            scoreEl.innerText = `Kết quả: ${scoreText}`;
+
+            if (percentage < 50) {
+                iconEl.innerText = "💪";
+                msgEl.innerText = "Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+            } else if (percentage <= 80) {
+                iconEl.innerText = "🌟";
+                msgEl.innerText = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+            } else {
+                iconEl.innerText = "🏆";
+                msgEl.innerText = "Làm tốt lắm, con cố gắng rinh điểm 10 ở lần sau nha!";
+                triggerConfetti();
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('result-modal').style.display = 'none';
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
